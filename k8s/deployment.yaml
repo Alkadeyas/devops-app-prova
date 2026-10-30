@@ -20,3 +20,6 @@ spec:
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://db:5432/devops
+          envFrom:
+            - configMapRef:
+                name: devops-app-config
