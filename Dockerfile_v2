@@ -11,4 +11,4 @@ RUN addgroup -S app && adduser -S -u 10001 pippo -G app
 COPY --from=builder /app/target/devops-app-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 USER 10001
-CMD ["java","-jar","devops-app.jar"]
+CMD ["java","-jar","app.jar"]
