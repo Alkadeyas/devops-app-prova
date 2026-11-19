@@ -21,6 +21,10 @@ spec:
             httpGet:
               path: /health
               port: 8080
+          lifecycle:
+            preStop:
+              sleep:
+                seconds: 5
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://db:5432/devops
