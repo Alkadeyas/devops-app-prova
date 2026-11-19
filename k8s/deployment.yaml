@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: devops-app
-          image: jaccamsi/devops-app:8d8a354f4adece382afc533d1cb1820ff31e322d
+          image: jaccamsi/devops-app:2a015ca5ed601e5eee19156b205c9b8484065f0f
           ports:
             - containerPort: 8080
           readinessProbe:
