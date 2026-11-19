@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: devops-app
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: devops-app
@@ -14,13 +14,9 @@ spec:
     spec:
       containers:
         - name: devops-app
-          image: jaccamsi/devops-app:5181f242459463f6b03a374d98e6c8ff34da9c5f
+          image: jaccamsi/devops-app:develop
           ports:
             - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://db:5432/devops

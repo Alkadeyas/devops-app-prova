@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: devops-app-config
 data:
-  INFO_APP_NAME: devops-app su Kubernetes
+  INFO_APP_NAME: devops app su Kubernetes
