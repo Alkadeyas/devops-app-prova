@@ -3,6 +3,8 @@ name: CI/CD
 on:
   push:
     branches: [develop, main]
+    paths-ignore:
+      - 'k8s/**'
   pull_request:
     branches: [develop, main]
   workflow_dispatch:
@@ -81,3 +83,19 @@ jobs:
           path: site
       - id: deploy
         uses: actions/deploy-pages@v5
+
+  deploy:
+    needs: docker
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Nuova immagine nel Deployment
+        run: |
+          sed -i "s|image: .*|image: $IMAGE:$GITHUB_SHA|" k8s/deployment.yaml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "deploy: devops-app ${GITHUB_SHA:0:7}"
+          git push
