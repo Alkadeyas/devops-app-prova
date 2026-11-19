@@ -17,6 +17,10 @@ spec:
           image: jaccamsi/devops-app:d13ed6f01679f168c16acb16bdb3d8170495466b
           ports:
             - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://db.database:5432/devops
